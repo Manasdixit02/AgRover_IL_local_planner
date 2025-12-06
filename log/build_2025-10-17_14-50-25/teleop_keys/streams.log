@@ -1,0 +1,24 @@
+[0.936s] Invoking command in '/home/manas/isaacsim_teleop/build/teleop_keys': PYTHONPATH=/home/manas/isaacsim_teleop/build/teleop_keys/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/manas/isaacsim_teleop/build/teleop_keys/build --no-deps symlink_data
+[1.314s] running develop
+[1.538s] running egg_info
+[1.538s] creating teleop_keys.egg-info
+[1.538s] writing teleop_keys.egg-info/PKG-INFO
+[1.538s] writing dependency_links to teleop_keys.egg-info/dependency_links.txt
+[1.539s] writing entry points to teleop_keys.egg-info/entry_points.txt
+[1.539s] writing requirements to teleop_keys.egg-info/requires.txt
+[1.539s] writing top-level names to teleop_keys.egg-info/top_level.txt
+[1.539s] writing manifest file 'teleop_keys.egg-info/SOURCES.txt'
+[1.541s] reading manifest file 'teleop_keys.egg-info/SOURCES.txt'
+[1.542s] writing manifest file 'teleop_keys.egg-info/SOURCES.txt'
+[1.544s] running build_ext
+[1.544s] Creating /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop-keys.egg-link (link to .)
+[1.546s] Installing teleop_node script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[1.546s] 
+[1.546s] Installed /home/manas/isaacsim_teleop/build/teleop_keys
+[1.547s] running symlink_data
+[1.547s] creating /home/manas/isaacsim_teleop/install/teleop_keys/share/ament_index
+[1.547s] creating /home/manas/isaacsim_teleop/install/teleop_keys/share/ament_index/resource_index
+[1.547s] creating /home/manas/isaacsim_teleop/install/teleop_keys/share/ament_index/resource_index/packages
+[1.547s] symbolically linking /home/manas/isaacsim_teleop/build/teleop_keys/resource/teleop_keys -> /home/manas/isaacsim_teleop/install/teleop_keys/share/ament_index/resource_index/packages
+[1.547s] symbolically linking /home/manas/isaacsim_teleop/build/teleop_keys/package.xml -> /home/manas/isaacsim_teleop/install/teleop_keys/share/teleop_keys
+[1.583s] Invoked command in '/home/manas/isaacsim_teleop/build/teleop_keys' returned '0': PYTHONPATH=/home/manas/isaacsim_teleop/build/teleop_keys/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/manas/isaacsim_teleop/build/teleop_keys/build --no-deps symlink_data

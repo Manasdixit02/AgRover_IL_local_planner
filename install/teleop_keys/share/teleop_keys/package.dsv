@@ -1,0 +1,6 @@
+source;share/teleop_keys/hook/pythonpath.ps1
+source;share/teleop_keys/hook/pythonpath.dsv
+source;share/teleop_keys/hook/pythonpath.sh
+source;share/teleop_keys/hook/ament_prefix_path.ps1
+source;share/teleop_keys/hook/ament_prefix_path.dsv
+source;share/teleop_keys/hook/ament_prefix_path.sh

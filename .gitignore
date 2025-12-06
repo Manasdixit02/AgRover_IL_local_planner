@@ -1,0 +1,38 @@
+# -------------------------------
+#   DIRECTORIES TO IGNORE
+# -------------------------------
+
+manifest_files/
+obstacle_synced_bag/
+__pycache__/
+rgb_frames/
+runs/
+
+# -------------------------------
+#   DATA / GENERATED FILES
+# -------------------------------
+
+filtered_training_data.json
+goal_cmd.csv
+
+# -------------------------------
+#   MAP FILES (pgm + yaml)
+# -------------------------------
+
+*.pgm
+*.yaml
+
+# If you want to specifically allow some yaml configs, then uncomment:
+# !nav_param.yaml
+# !nav_param_best.yaml
+
+# -------------------------------
+#   Python cache / build artifacts
+# -------------------------------
+
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.cache/
+

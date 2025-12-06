@@ -1,0 +1,44 @@
+[0.430s] Invoking command in '/home/manas/isaacsim_teleop/src/teleop_keys': PYTHONPATH=/home/manas/isaacsim_teleop/build/teleop_keys/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teleop_keys build --build-base /home/manas/isaacsim_teleop/build/teleop_keys/build install --record /home/manas/isaacsim_teleop/build/teleop_keys/install.log --single-version-externally-managed install_data
+[0.576s] running egg_info
+[0.576s] writing ../../build/teleop_keys/teleop_keys.egg-info/PKG-INFO
+[0.579s] writing dependency_links to ../../build/teleop_keys/teleop_keys.egg-info/dependency_links.txt
+[0.579s] writing entry points to ../../build/teleop_keys/teleop_keys.egg-info/entry_points.txt
+[0.579s] writing requirements to ../../build/teleop_keys/teleop_keys.egg-info/requires.txt
+[0.579s] writing top-level names to ../../build/teleop_keys/teleop_keys.egg-info/top_level.txt
+[0.581s] reading manifest file '../../build/teleop_keys/teleop_keys.egg-info/SOURCES.txt'
+[0.582s] writing manifest file '../../build/teleop_keys/teleop_keys.egg-info/SOURCES.txt'
+[0.582s] running build
+[0.582s] running build_py
+[0.583s] copying teleop_keys/manifest_post_processor.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.583s] copying teleop_keys/IL_cmd_gen.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.583s] copying teleop_keys/csv_generator_high_lvl.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.584s] copying teleop_keys/train_il_multimodal.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.584s] copying teleop_keys/global_planner_bridge.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.584s] copying teleop_keys/train_il_multimodal_with_plot.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.585s] running install
+[0.585s] running install_lib
+[0.586s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/manifest_post_processor.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.586s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/IL_cmd_gen.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.586s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/csv_generator_high_lvl.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.586s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/train_il_multimodal.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.587s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/global_planner_bridge.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.587s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/train_il_multimodal_with_plot.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.587s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/manifest_post_processor.py to manifest_post_processor.cpython-310.pyc
+[0.588s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/IL_cmd_gen.py to IL_cmd_gen.cpython-310.pyc
+[0.589s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/csv_generator_high_lvl.py to csv_generator_high_lvl.cpython-310.pyc
+[0.590s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/train_il_multimodal.py to train_il_multimodal.cpython-310.pyc
+[0.592s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/global_planner_bridge.py to global_planner_bridge.cpython-310.pyc
+[0.593s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/train_il_multimodal_with_plot.py to train_il_multimodal_with_plot.cpython-310.pyc
+[0.596s] running install_data
+[0.596s] running install_egg_info
+[0.598s] removing '/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys-0.0.1-py3.10.egg-info' (and everything under it)
+[0.598s] Copying ../../build/teleop_keys/teleop_keys.egg-info to /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys-0.0.1-py3.10.egg-info
+[0.599s] running install_scripts
+[0.614s] Installing actuator_cmd_node script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.614s] Installing global_planner_bridge script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.614s] Installing rosbag_play script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.614s] Installing stamp script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.614s] Installing stamp_high_lvl script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.615s] Installing teleop_node script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.615s] writing list of installed files to '/home/manas/isaacsim_teleop/build/teleop_keys/install.log'
+[0.629s] Invoked command in '/home/manas/isaacsim_teleop/src/teleop_keys' returned '0': PYTHONPATH=/home/manas/isaacsim_teleop/build/teleop_keys/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teleop_keys build --build-base /home/manas/isaacsim_teleop/build/teleop_keys/build install --record /home/manas/isaacsim_teleop/build/teleop_keys/install.log --single-version-externally-managed install_data

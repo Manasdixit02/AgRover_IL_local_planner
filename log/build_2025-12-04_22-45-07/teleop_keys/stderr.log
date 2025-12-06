@@ -1,0 +1,5 @@
+  File "/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/global_planner_bridge.py", line 65
+    self.get_logger()..warn(
+                      ^
+SyntaxError: invalid syntax
+

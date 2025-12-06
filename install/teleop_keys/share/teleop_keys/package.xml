@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>teleop_keys</name>
+  <version>0.0.1</version>
+  <description>Arrow keys teleoperation for /cmd_vel</description>
+  <maintainer email="you@example.com">you</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Python build tool -->
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- Runtime deps -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+
