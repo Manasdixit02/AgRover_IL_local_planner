@@ -27,6 +27,8 @@ setup(
             'rosbag_play = teleop_keys.json_reader:main',
             'global_planner_bridge = teleop_keys.global_planner_bridge:main',
             'il_local_planner = teleop_keys.IL_cmd_gen:main',
+            'il_local_planner_lidar = teleop_keys.IL_cmd_gen_lidar:main',
+            'world_to_odom_relay = teleop_keys.world_to_odom_relay:main',
         ],
     },
 )

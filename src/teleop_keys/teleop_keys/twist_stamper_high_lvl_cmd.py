@@ -14,7 +14,7 @@ class CmdVelStamper(Node):
 
         # subscribe to sim clock and cmd_vel
         self.create_subscription(Clock, '/clock', self._clock_cb, 10)
-        self.create_subscription(Twist, 'cmd_vel', self._cmd_cb, 10)
+        self.create_subscription(Twist, 'cmd_vel_nav2', self._cmd_cb, 10)
 
         # publish a stamped version (array + stamp as one message)
         # or simplest: just publish timestamp alongside the same array

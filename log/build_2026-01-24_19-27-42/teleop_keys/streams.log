@@ -1,0 +1,36 @@
+[0.492s] Invoking command in '/home/manas/isaacsim_teleop/src/teleop_keys': PYTHONPATH=/home/manas/isaacsim_teleop/build/teleop_keys/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teleop_keys build --build-base /home/manas/isaacsim_teleop/build/teleop_keys/build install --record /home/manas/isaacsim_teleop/build/teleop_keys/install.log --single-version-externally-managed install_data
+[0.658s] running egg_info
+[0.659s] writing ../../build/teleop_keys/teleop_keys.egg-info/PKG-INFO
+[0.660s] writing dependency_links to ../../build/teleop_keys/teleop_keys.egg-info/dependency_links.txt
+[0.660s] writing entry points to ../../build/teleop_keys/teleop_keys.egg-info/entry_points.txt
+[0.661s] writing requirements to ../../build/teleop_keys/teleop_keys.egg-info/requires.txt
+[0.661s] writing top-level names to ../../build/teleop_keys/teleop_keys.egg-info/top_level.txt
+[0.662s] reading manifest file '../../build/teleop_keys/teleop_keys.egg-info/SOURCES.txt'
+[0.663s] writing manifest file '../../build/teleop_keys/teleop_keys.egg-info/SOURCES.txt'
+[0.663s] running build
+[0.663s] running build_py
+[0.664s] copying teleop_keys/IL_cmd_gen.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.664s] copying teleop_keys/model_analyzer.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.664s] copying teleop_keys/global_planner_bridge.py -> /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys
+[0.664s] running install
+[0.664s] running install_lib
+[0.665s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/IL_cmd_gen.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.665s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/model_analyzer.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.665s] copying /home/manas/isaacsim_teleop/build/teleop_keys/build/lib/teleop_keys/global_planner_bridge.py -> /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys
+[0.666s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/IL_cmd_gen.py to IL_cmd_gen.cpython-310.pyc
+[0.668s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/model_analyzer.py to model_analyzer.cpython-310.pyc
+[0.669s] byte-compiling /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys/global_planner_bridge.py to global_planner_bridge.cpython-310.pyc
+[0.670s] running install_data
+[0.670s] running install_egg_info
+[0.671s] removing '/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys-0.0.1-py3.10.egg-info' (and everything under it)
+[0.671s] Copying ../../build/teleop_keys/teleop_keys.egg-info to /home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages/teleop_keys-0.0.1-py3.10.egg-info
+[0.672s] running install_scripts
+[0.692s] Installing actuator_cmd_node script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.692s] Installing global_planner_bridge script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.692s] Installing il_local_planner script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.692s] Installing rosbag_play script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.692s] Installing stamp script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.692s] Installing stamp_high_lvl script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.692s] Installing teleop_node script to /home/manas/isaacsim_teleop/install/teleop_keys/lib/teleop_keys
+[0.693s] writing list of installed files to '/home/manas/isaacsim_teleop/build/teleop_keys/install.log'
+[0.710s] Invoked command in '/home/manas/isaacsim_teleop/src/teleop_keys' returned '0': PYTHONPATH=/home/manas/isaacsim_teleop/build/teleop_keys/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/manas/isaacsim_teleop/install/teleop_keys/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teleop_keys build --build-base /home/manas/isaacsim_teleop/build/teleop_keys/build install --record /home/manas/isaacsim_teleop/build/teleop_keys/install.log --single-version-externally-managed install_data

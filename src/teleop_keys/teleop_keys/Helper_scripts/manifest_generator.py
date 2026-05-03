@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import csv, json, os, sys
+import csv, json, os, sys, math
 from typing import List, Optional
 
 # --------- CONFIG ----------
-CSV_PATH = "aligned_expanded_relpose_rt.csv"
+CSV_PATH = "aligned_samples_with_tf.csv"
 LIDAR_CSV_PATH = "lidar_ranges.csv"   # read lidar ranges from this file
 OUTPUT_JSON = "manifest.json"
 IMAGE_DIR = "rgb_frames"              # image path becomes rgb_frames/<timestamp>.jpg
@@ -48,24 +48,22 @@ def _normalize_ts(ts_value) -> Optional[str]:
         return None
     s = str(ts_value).strip()
     try:
-        # float first to handle scientific notation; then int to drop decimals
         v = int(float(s))
         return str(v)
     except Exception:
-        # last-ditch: keep only digits
         digits = "".join(ch for ch in s if ch.isdigit())
         return digits if digits else None
 
 def _collect_goal(row: dict) -> Optional[List[float]]:
     """
     Try multiple goal encodings:
-      1) 'goal' as a list-like string
-      2) polar: ('goal_r','goal_theta')   <-- original
-         ALSO accept ('r','theta')        <-- NEW
+      1) 'goal' as a list-like string          <-- used by new aligner
+      2) polar: ('goal_r','goal_theta')
+         ALSO accept ('r','theta')
       3) cartesian+heading: ('goal_dx','goal_dy','goal_dtheta')
       4) cartesian only: ('goal_dx','goal_dy')
     """
-    # 1) single field list
+    # 1) single field list (this will hit for the new CSV's "goal" column)
     for key in ("goal", "goal_vec", "goal_relpose"):
         if key in row and not _is_empty(row[key]):
             lst = _parse_list_field(row[key])
@@ -79,7 +77,7 @@ def _collect_goal(row: dict) -> Optional[List[float]]:
         except Exception:
             pass
 
-    # 2b) polar with bare names r, theta  <-- NEW
+    # 2b) polar with bare names r, theta
     if all(k in row for k in ("r", "theta")) and not _is_empty(row["r"]) and not _is_empty(row["theta"]):
         try:
             return [float(row["r"]), float(row["theta"])]
@@ -111,7 +109,7 @@ def _collect_lidar(_row: dict) -> Optional[List[float]]:
 def _collect_command(row: dict) -> Optional[List[float]]:
     """
     Accept:
-      - single list field: 'command', 'cmd', 'cmd_vals'
+      - single list field: 'command', 'cmd', 'cmd_vals'  <-- new CSV uses 'cmd_vals'
       - scalar columns: ('cmd_vx','cmd_vy','cmd_wz') or ('vx','vy','wz') or ('v_x','v_y','w_z')
     """
     for key in ("command", "cmd", "cmd_vals"):
@@ -167,16 +165,25 @@ def main():
     entries = []
     with open(CSV_PATH, "r", newline="") as f:
         reader = csv.DictReader(f)
-        missing_cols = [c for c in ("rgb_ts_ns", "lidar_ts_ns") if c not in reader.fieldnames]
+
+        required_cols = (
+            "rgb_ts_ns",
+            "lidar_ts_ns",
+            "cmd_ts_ns",
+            "cmd_vals",
+            "goal_ts_ns",
+            "goal",
+        )
+        missing_cols = [c for c in required_cols if c not in reader.fieldnames]
         if missing_cols:
-            print(f"ERROR: CSV must have columns: rgb_ts_ns, lidar_ts_ns. Missing: {missing_cols}")
+            print(f"ERROR: CSV must have columns: {required_cols}. Missing: {missing_cols}")
             sys.exit(1)
 
         for row in reader:
-            rgb_ts_raw = row.get("rgb_ts_ns", "")
+            rgb_ts_raw   = row.get("rgb_ts_ns", "")
             lidar_ts_raw = row.get("lidar_ts_ns", "")
 
-            rgb_ts = _normalize_ts(rgb_ts_raw)
+            rgb_ts   = _normalize_ts(rgb_ts_raw)
             lidar_ts = _normalize_ts(lidar_ts_raw)
 
             # Keep only rows having both stamps
@@ -191,12 +198,16 @@ def main():
             if lidar is None or len(lidar) == 0:
                 continue
 
-            # Goal
+            # Goal (comes from 'goal' column: [x, y, theta])
             goal = _collect_goal(row)
-            if goal is None:
+            if goal is None or len(goal) < 2:
                 continue
+            x, y, theta = float(goal[0]), float(goal[1]), float(goal[2])
+            r = math.sqrt(x*x + y*y)
+            #goal = [r, theta]   # <-- changed to polar [r, theta]
+            goal = [x, y]
 
-            # Command
+            # Command (comes from 'cmd_vals' column)
             command = _collect_command(row)
             if command is None:
                 continue
@@ -204,7 +215,7 @@ def main():
             entries.append({
                 "image_path": image_path.replace("\\", "/"),
                 "lidar": lidar,
-                "goal": goal,
+                "goal": goal,        # now [r, theta]
                 "command": command
             })
 
