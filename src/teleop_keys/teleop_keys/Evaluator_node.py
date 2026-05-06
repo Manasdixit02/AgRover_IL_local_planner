@@ -35,7 +35,7 @@ class EvaluatorNode(Node):
         self.declare_parameter("goal_tolerance", 0.5)
         self.declare_parameter("collision_threshold", 0.25)
         self.declare_parameter("collision_cooldown_sec", 1.0)
-        self.declare_parameter("timeout_sec", 120.0)
+        self.declare_parameter("timeout_sec", 300.0)
 
         self.declare_parameter("method_name", "IL_multimodal")
         self.declare_parameter("environment_name", "unseen_env_01")

@@ -385,14 +385,21 @@ class ExperimentManagerNode(Node):
         run_id = self.current_run_idx
         goal = self.goals[run_id]
 
-        sx = self.start_pose["x"]
-        sy = self.start_pose["y"]
-        sz = self.start_pose["z"]
-        syaw = self.start_pose["yaw"]
+        if "start" in goal:
+            sx = goal["start"]["x"]
+            sy = goal["start"]["y"]
+            sz = goal["start"].get("z", self.start_pose["z"])
+            syaw = goal["start"].get("yaw", 0.0)
+        else:
+            sx = self.start_pose["x"]
+            sy = self.start_pose["y"]
+            sz = self.start_pose["z"]
+            syaw = self.start_pose["yaw"]
 
-        gx = goal["x"]
-        gy = goal["y"]
-        gyaw = goal.get("yaw", 0.0)
+        g = goal["goal"] if "goal" in goal else goal
+        gx = g["x"]
+        gy = g["y"]
+        gyaw = g.get("yaw", 0.0)
 
         self.get_logger().info(f"Preparing run {run_id}: goal=({gx}, {gy})")
 
