@@ -62,6 +62,7 @@ class GlobalPlannerBridge(Node):
         self.global_path: Path | None = None
         self._path_frozen = False
         self._last_best_idx = 0
+        self._last_done_run_id = None
 
         self._timer = self.create_timer(0.1, self._timer_cb)
 
@@ -69,36 +70,111 @@ class GlobalPlannerBridge(Node):
             f"GlobalPlannerBridge ready. freeze_first_path={self.freeze_first_path}"
         )
 
-    def reset_path_state(self):
+    def reset_path_state(self, run_id=None):
         self.global_path = None
         self._path_frozen = False
         self._last_best_idx = 0
-        self.get_logger().info("Reset path state after eval DONE.")
+
+        if run_id is None:
+            self.get_logger().info("Reset path state after eval DONE.")
+        else:
+            self.get_logger().info(f"Reset path state after eval DONE for run_id={run_id}.")
 
     def _eval_result_cb(self, msg: String):
-        tokens = msg.data.split(",")
+        tokens = msg.data.strip().split(",")
 
-        if not tokens:
+        if len(tokens) < 2:
             return
 
-        if tokens[0] == "DONE":
-            self.reset_path_state()
+        if tokens[0] != "DONE":
+            return
+
+        run_id = tokens[1]
+
+        if run_id == self._last_done_run_id:
+            self.get_logger().debug(f"Ignoring duplicate DONE for run_id={run_id}.")
+            return
+
+        self._last_done_run_id = run_id
+        self.reset_path_state(run_id=run_id)
 
     def _clock_callback(self, msg: Clock):
         self._last_clock = msg.clock
 
+    def get_current_robot_pose(self):
+        try:
+            tf = self.tf_buffer.lookup_transform(
+                self.global_frame,
+                self.robot_frame,
+                rclpy.time.Time()
+            )
+
+            start_pose = PoseStamped()
+            start_pose.header.frame_id = self.global_frame
+            start_pose.header.stamp = rclpy.time.Time().to_msg()
+
+            start_pose.pose.position.x = tf.transform.translation.x
+            start_pose.pose.position.y = tf.transform.translation.y
+            start_pose.pose.position.z = tf.transform.translation.z
+            start_pose.pose.orientation = tf.transform.rotation
+
+            return start_pose
+
+        except TransformException as ex:
+            self.get_logger().warn(
+                f"Could not get robot start pose from TF "
+                f"{self.global_frame} -> {self.robot_frame}: {ex}"
+            )
+            return None
+
     def goal_callback(self, goal_msg: PoseStamped):
-        self.get_logger().info("Received /nav_goal, calling Nav2 ComputePathToPose...")
+        self.get_logger().info(
+            f"Goal received | original_frame_id='{goal_msg.header.frame_id}', "
+            f"original_stamp={goal_msg.header.stamp.sec}.{goal_msg.header.stamp.nanosec}, "
+            f"x={goal_msg.pose.position.x:.2f}, "
+            f"y={goal_msg.pose.position.y:.2f}, "
+            f"z={goal_msg.pose.position.z:.2f}"
+        )
+
+        start_pose = self.get_current_robot_pose()
+
+        if start_pose is None:
+            self.get_logger().warn(
+                "Skipping ComputePathToPose because current robot start pose is unavailable."
+            )
+            return
+
+        goal_msg.header.frame_id = self.global_frame
+        goal_msg.header.stamp = rclpy.time.Time().to_msg()
+
+        self.get_logger().info(
+            f"Start pose | frame_id='{start_pose.header.frame_id}', "
+            f"x={start_pose.pose.position.x:.2f}, "
+            f"y={start_pose.pose.position.y:.2f}, "
+            f"z={start_pose.pose.position.z:.2f}"
+        )
+
+        self.get_logger().info(
+            f"Goal pose | frame_id='{goal_msg.header.frame_id}', "
+            f"x={goal_msg.pose.position.x:.2f}, "
+            f"y={goal_msg.pose.position.y:.2f}, "
+            f"z={goal_msg.pose.position.z:.2f}"
+        )
 
         goal = ComputePathToPose.Goal()
         goal.goal = goal_msg
+        goal.start = start_pose
+        goal.use_start = True
 
         if not self._planner_client.wait_for_server(timeout_sec=5.0):
             self.get_logger().error("Planner action server not available.")
             return
 
+        self.get_logger().info("Calling Nav2 ComputePathToPose with explicit start pose...")
+
         send_future = self._planner_client.send_goal_async(
-            goal, feedback_callback=self._planner_feedback_cb
+            goal,
+            feedback_callback=self._planner_feedback_cb
         )
         send_future.add_done_callback(self._planner_goal_response_cb)
 
@@ -120,8 +196,17 @@ class GlobalPlannerBridge(Node):
         path: Path = result.path
 
         if not path.poses:
-            self.get_logger().warn("Planner returned empty path; keeping existing path if any.")
+            self.get_logger().warn(
+                "Planner returned empty path even with explicit start pose. "
+                "This usually means planner/costmap cannot find a valid route "
+                "for this specific start-goal pair."
+            )
             return
+
+        self.get_logger().info(
+            f"Planner returned path | frame_id='{path.header.frame_id}', "
+            f"poses={len(path.poses)}"
+        )
 
         if self.freeze_first_path and self._path_frozen:
             self.get_logger().info("Path already frozen; ignoring replanned path.")

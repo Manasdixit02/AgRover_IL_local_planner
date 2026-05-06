@@ -16,8 +16,6 @@ from simulation_interfaces.msg import SimulationState
 import tf2_ros
 from tf2_ros import TransformException
 
-import time
-
 
 class EvaluatorNode(Node):
     def __init__(self):
@@ -146,6 +144,9 @@ class EvaluatorNode(Node):
 
     def command_callback(self, msg: String):
         tokens = msg.data.strip().split(",")
+
+        if not tokens:
+            return
 
         if tokens[0] == "START":
             self.run_id = int(tokens[1])
@@ -331,10 +332,9 @@ class EvaluatorNode(Node):
             f"DONE,{self.run_id},{success},{timeout},"
             f"{time_to_goal:.3f},{self.collision_count}"
         )
-        
-        for _ in range(5):
-            self.result_pub.publish(result_msg)
-            time.sleep(0.1)
+
+        # Changed: publish DONE only once
+        self.result_pub.publish(result_msg)
 
         self.get_logger().info(
             f"Published DONE result: {result_msg.data}"
